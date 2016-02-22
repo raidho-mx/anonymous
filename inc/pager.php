@@ -6,9 +6,17 @@ Pager
 ?>
 
 <!-- Pager -->
-<ul class="articulos_pager">
-	<li><a href="#" class="active"><div>1</div></a></li>
-	<li><a href="#">2</a></li>
-	<li><a href="#">3</a></li>
-	<li><a href="#">4</a></li>
+<ul class="articulos_pager"><?php
+	global $wp_query;
+	$big = 999999999; // need an unlikely integer
+
+	echo paginate_links( array(
+		'prev_next'	=> false,
+		'base' 		=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' 	=> '?paged=%#%',
+		'current' 	=> max( 1, get_query_var('paged') ),
+		'total' 	=> $wp_query->max_num_pages,
+		'type' 		=> 'list'
+
+	) ); ?>
 </ul>
