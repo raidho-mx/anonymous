@@ -63,7 +63,8 @@
 				$preTitle = '';
 			}
 
-			// print '<div class="three columns articulo">A</div>'; ?>
+
+			?>
 			<div class="<?php echo $class ?>">
 				<a href="<?php get_the_permalink() ?>"><?php
 				if ( has_post_thumbnail() ) {
@@ -74,7 +75,6 @@
 						<span><?php
 							foreach ($cats as $cat) {
 								if($cat->name != 'Videos' AND $cat->name != 'Sin categoría' AND $cat->name != 'Galerias') echo $cat->name.' ';
-								// if($cat->name != 'Videos' OR $cat->name != 'Galerias' OR $cat->name != 'Sin Categoría') echo $cat->name;
 							} ?>
 						</span>
 						<span> <?php the_time('d/m/y') ?></span>

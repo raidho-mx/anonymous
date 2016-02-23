@@ -36,7 +36,7 @@ if(get_field('secondary_menu', 'options')) : ?>
 						} ?>
 						<li class="three columns articulo <?php echo $class; ?>">
 							<a href="<?php the_permalink(); ?>">
-								<img src="<?php bloginfo('template_url'); ?>/img/placeholders/row_img1.jpg" alt="">
+								<?php the_post_thumbnail(); ?>
 								<small><?php echo $preTitle.' '.get_the_title(); ?></small>
 							</a>
 						</li><?php
