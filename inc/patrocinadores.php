@@ -5,12 +5,28 @@ Patrocinadores Designaholic
 */
 ?>
 
-<!-- Patrocinadores Designaholic -->
+<!-- Patrocinadores Designaholic --><?php
+
+	$rows = get_field('img_ads', 'option');
+	if($rows) : ?>
+
 <div class="ads_patrocinadores bloque_horizontal">
 	<h3>Patrocinadores Designaholic</h3>
-	<ul>
-		<li><a href=""><img src="img/placeholders/patrocinador_dh1.jpg" alt="" width="300"></a></li><li>
-			<a href=""><img src="img/placeholders/patrocinador_dh2.jpg" alt="" width="300"></a></li><li>
-			<a href=""><img src="img/placeholders/patrocinador_dh3.jpg" alt="" width="300"></a></li>
+	<ul><?php
+
+		// var_dump($rows);
+		shuffle($rows);
+		$i = 0;
+		foreach($rows as $row) {
+			$image = $row['img'];
+			?><li>
+				<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
+					<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $row['description']; ?>" width="300" />
+				</a>
+			</li><?php
+			if (++$i == 3) break;
+
+		} ?>
 	</ul>
-</div>
+</div><?php
+	endif; ?>
