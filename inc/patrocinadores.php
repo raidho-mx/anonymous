@@ -14,7 +14,6 @@ Patrocinadores Designaholic
 	<h3>Patrocinadores Designaholic</h3>
 	<ul><?php
 
-		// var_dump($rows);
 		shuffle($rows);
 		$i = 0;
 		foreach($rows as $row) {
