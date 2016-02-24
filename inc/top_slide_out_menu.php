@@ -24,16 +24,8 @@ if(get_field('secondary_menu', 'options')) : ?>
 				<ul class="cbp-hssubmenu row fluid"><?php
 					while ( $taxQ->have_posts() ) {
 						$taxQ->the_post();
-						if(has_category('galerias')) {
-							$class = ' galeria';
-							$preTitle = '<span class="rojo_txt">Galeria:</span> ';
-						} elseif(has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) {
-							$class = ' video';
-							$preTitle = '<span class="rojo_txt">Videos:</span> ';
-						} else {
-							$class = '';
-							$preTitle = '';
-						} ?>
+						$class = checkClass();
+						$preTitle = checkTag(); ?>
 						<li class="three columns articulo <?php echo $class; ?>">
 							<a href="<?php the_permalink(); ?>">
 								<?php the_post_thumbnail(); ?>
