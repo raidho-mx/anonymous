@@ -60,7 +60,7 @@
 			return $preTitle;
 		}
 
-		function cards($columns){
+		function cards($columns, $meta = TRUE){
 			if($columns == '0') 	{ $class = ''; }
 			elseif($columns == '2') { $class = 'six columns'; }
 			elseif($columns == '3') { $class = 'four columns'; }
@@ -73,26 +73,22 @@
 			$preTitle = checkTag();
 
 			?>
-			<div class="<?php echo $class ?>">
-				<a href="<?php the_permalink() ?>"><?php
-				if ( has_post_thumbnail() ) {
-					the_post_thumbnail();
-					// add description(alt) & size?
-				} ?>
-					<div class="meta">
-						<span><?php
-							foreach ($cats as $cat) {
-								if($cat->name != 'Videos' AND $cat->name != 'Sin categoría' AND $cat->name != 'Galerias') echo $cat->name.' ';
-							} ?>
-						</span>
-						<span> <?php the_time('d/m/y') ?></span>
-					</div><?php
+			<div class="<?php echo $class; ?>">
+				<a href="<?php the_permalink(); ?>"><?php
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail();
+					} if($meta) {
+						echo '<div class="meta"><span>';
+						foreach ($cats as $cat) {
+							if($cat->name != 'Videos' AND $cat->name != 'Sin categoría' AND $cat->name != 'Galerias') echo $cat->name.' ';
+						}
+						echo '</span><span>'. get_the_time('d/m/y') .'</span></div>';
+					}
 					if($columns == '6') {
 						echo '<h5>'.$preTitle.' '.get_the_title().'</h5>';
 					} else {
 						echo '<h4>'.$preTitle.' '.get_the_title().'</h4>';
 					} ?>
-
 				</a>
 			</div><?php
 		}
