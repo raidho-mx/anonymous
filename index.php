@@ -20,7 +20,7 @@ Reciente
 			<div class="row fluid"><?php
 				while ( have_posts() ) {
 					the_post();
-					cards();
+					cards(4);
 				} ?>
 			</div><?php
 
