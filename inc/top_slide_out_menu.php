@@ -17,8 +17,6 @@ if(get_field('secondary_menu', 'options')) : ?>
 
 
 				$taxQ = new WP_Query( array( 'category_name' => $term->name, 'posts_per_page' => 4 ) );
-
-
 				if ( $taxQ->have_posts() ) : ?>
 
 				<ul class="cbp-hssubmenu row fluid"><?php
