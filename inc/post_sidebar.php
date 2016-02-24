@@ -8,55 +8,36 @@ Single Post Sidebar
 <!-- Sidebar Single Post -->
 <div class="sidebar_post three columns offset-by-one">
 
-	<h3>Publicidad</h3>
+	<h3>Publicidad</h3><?php
 
-	<div class="ad_group">
-		<div class="ad_google_uno">
-			<img src="img/placeholders/ad_google1.jpg" width="300" height="250" alt="">
-		</div>
-	</div>
+	$rows = get_field('img_ads', 'option');
 
-	<h3>Reciente</h3>
+	shuffle($rows);
+	$i = 0;
+	foreach($rows as $row) {
+		$image = $row['img'];
+		?><div class="ad_group">
+				<div class="ad_google_uno">
+					<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
+						<img src="<?php echo $image['sizes']['large']; ?>" width="300" alt="<?php echo $row['description']; ?>">
+					</a>
+				</div>
+			</div><?php
+		if (++$i == 1) break;
+	}
 
-	<div class="articulo galeria">
-		<a href="single_post.php">
-			<img src="img/placeholders/row_img1.jpg" alt="">
-			<div class="meta">
-				<span>Categoría</span>
-				<span>08/12/15</span>
-			</div>
-			<h4><span class="rojo_txt">Galería:</span> Ettore Sottsasss Antes de Memphis</h4>
-		</a>
-	</div>
-	<div class="articulo">
-		<a href="#">
-			<img src="img/placeholders/row_img2.jpg" alt="">
-			<div class="meta">
-				<span>Categoría</span>
-				<span>08/12/15</span>
-			</div>
-			<h4>Abierto Mexicano de Disenno 2015: La Revista Fragmentada, Introspectiva editorial de Sada por Casa Gutiérez Nájera</h4>
-		</a>
-	</div>
-	<div class="articulo">
-		<a href="#">
-			<img src="img/placeholders/row_img3.jpg" alt="">
-			<div class="meta">
-				<span>Categoría</span>
-				<span>08/12/15</span>
-			</div>
-			<h4>MP01: Tecnología Domesticada por Punkt</h4>
-		</a>
-	</div>
-	<div class="articulo video">
-		<a href="#">
-			<img src="img/placeholders/row_img6.jpg" alt="">
-			<div class="meta">
-				<span>Categoría</span>
-				<span>08/12/15</span>
-			</div>
-			<h4><span class="rojo_txt">Video:</span> Kent Larson: Diseños Inteligentes para Acomodar más Personas en cada Ciudad</h4>
-		</a>
-	</div>
+
+	// Recent
+	$recent = new WP_Query( array( 'posts_per_page' => 4 ) );
+
+	if ( $recent->have_posts() ) : ?>
+		<h3>Reciente</h3><?php
+		while ( $recent->have_posts() ) {
+			$recent->the_post();
+			cards(0);
+		}
+	endif;
+	wp_reset_postdata(); ?>
+
 
 </div>
