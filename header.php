@@ -40,12 +40,17 @@ Header
 					echo '<ul>';
 					while (have_rows('main_menu', 'options')) {
 						the_row();
-						if(get_sub_field('ext_url')) {
+						$check = get_sub_field('ext_url');
+						$post = get_sub_field('page_link');
+
+						if($check) {
 							$link = get_sub_field('custom_link');
+							$name = get_sub_field('name');
 						} else {
-							$link = get_sub_field('page_link');
+							$link = get_the_permalink($post);
+							$name = get_the_title($post);
 						}
-						echo '<li><a href="'.$link.'">'.get_sub_field('name').'</a></li>';
+						echo '<li><a href="'.$link.'">'.$name.'</a></li>';
 					}
 					echo '</ul>';
 				} ?>
