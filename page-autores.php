@@ -88,7 +88,7 @@ Autores
 
 		</div>
 
-		<?php // get_template_part('inc/patrocinadores'); ?>
+		<?php patrocinadores(1); ?>
 
 	</div>
 

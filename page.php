@@ -30,7 +30,7 @@ Page
 			</div>
 
 			<!-- Termina row conteniendo las dos columnas del cuerpo -->
-			<?php get_template_part('inc/patrocinadores'); ?>
+			<?php patrocinadores(1); ?>
 
 		</div>
 	</div>

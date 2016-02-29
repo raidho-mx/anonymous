@@ -46,7 +46,7 @@ Categorías
 
 
 		// Img Ads
-		get_template_part('inc/patrocinadores'); ?>
+		patrocinadores(1); ?>
 
 	</div>
 

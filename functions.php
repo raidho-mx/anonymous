@@ -60,11 +60,21 @@
 			return $preTitle;
 		}
 
-		function cards($columns, $meta = TRUE){
+
+
+
+		function cards($columns, $meta = TRUE, $i){
 			if($columns == '0') 	{ $class = ''; }
 			elseif($columns == '2') { $class = 'six columns'; }
 			elseif($columns == '3') { $class = 'four columns'; }
 			elseif($columns == '6') { $class = 'two columns'; }
+			elseif($columns == '363') {
+				if($i == 2) {
+					$class = 'six columns';
+				} else {
+					$class = 'three columns';
+				}
+			}
 			else { $class = 'three columns'; }
 
 			$class .= ' articulo';
@@ -73,7 +83,7 @@
 			$preTitle = checkTag();
 
 			?>
-			<div class="<?php echo $class; ?>">
+			<div class="<?php echo $class.' '.$i; ?>">
 				<a href="<?php the_permalink(); ?>"><?php
 					if ( has_post_thumbnail() ) {
 						the_post_thumbnail();
@@ -91,4 +101,29 @@
 					} ?>
 				</a>
 			</div><?php
+		}
+
+		function patrocinadores($title = FALSE) {
+			$rows = get_field('img_ads', 'option');
+			if($rows) : ?>
+
+		<div class="ads_patrocinadores bloque_horizontal"><?php
+			if($title) echo '<h3>Patrocinadores Designaholic</h3>'; ?>
+			<ul><?php
+
+				shuffle($rows);
+				$i = 0;
+				foreach($rows as $row) {
+					$image = $row['img'];
+					?><li>
+						<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
+							<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $row['description']; ?>" width="300" />
+						</a>
+					</li><?php
+					if (++$i == 3) break;
+
+				} ?>
+			</ul>
+		</div><?php
+			endif;
 		}
