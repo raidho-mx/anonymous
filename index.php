@@ -7,9 +7,14 @@ Reciente
 
 <?php get_header(); ?>
 
-	<div class="container spacer">
+	<div class="container spacer"><?php
 
-		<h2>Reciente</h2><?php
+
+		if(is_search()) {
+			echo '<h2>Resultados para: '.get_search_query().'</h2>';
+		} else {
+			echo '<h2>Reciente</h2>';
+		}
 
 		// Text Ads
 		get_template_part('inc/ad_dh_dos');
