@@ -29,13 +29,31 @@ Categorías
 			foreach ($categories as $cat) {
 
 				$args2 = array("category" => $cat->cat_ID, 'posts_per_page' => 1);
-				$posts = get_posts($args2); ?>
+				$posts = get_posts($args2);
+
+
+				// get last post's Img
+				foreach($posts as $post) {
+					$lastPostImg = get_the_post_thumbnail_url($post->ID, 'large');
+				}
+
+				// get category img
+				$catImg = get_field('img', 'category_'.$cat->cat_ID);
+
+
+				// if has:  1 last post.  2 Cat image.  3 placeholder img
+				if($lastPostImg) {
+					$mainImg = $lastPostImg;
+				} elseif($catImg) {
+					$catImgUrl = wp_get_attachment_image_src($catImg['ID'], 'large');
+					$mainImg = $catImgUrl[0];
+				} else {
+					$mainImg = 'http://40.media.tumblr.com/5a64f8e10906552642483a9f0645104f/tumblr_o1ac9dY13u1ujxyzao1_1280.jpg';
+				} ?>
 
 				<div class="four columns articulo">
-					<a href="<?php echo get_category_link( $cat->cat_ID ); ?>"> <?php
-						foreach($posts as $post) {
-							echo get_the_post_thumbnail($post->ID, 'large');
-						} ?>
+					<a href="<?php echo get_category_link( $cat->cat_ID ); ?>">
+						<img src="<?php echo $mainImg; ?>">
 						<h3><?php echo $cat->name ?></h3>
 					</a>
 				</div><?php
