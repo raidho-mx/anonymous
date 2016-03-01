@@ -56,7 +56,12 @@ wp_footer(); ?>
 				<ul><?php
 				while (have_rows('footer_links', 'options')) {
 					the_row();
-					echo '<li><a href="'.get_sub_field('url').'">'.get_sub_field('name').'</a></li>';
+					if(get_sub_field('manual')) {
+						echo '<li><a href="'.get_sub_field('url').'">'.get_sub_field('name').'</a></li>';
+					} else {
+						$page = get_sub_field('page_link');
+						echo '<li><a href="'.get_page_link($page).'">'.get_the_title($page).'</a></li>';
+					}
 				} ?>
 				</ul><?php
 			endif; ?>
@@ -67,12 +72,17 @@ wp_footer(); ?>
 
 <!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-<script src="<?php bloginfo('template_url'); ?>/scripts/scripts.js"></script>
+<?php // <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script> ?>
 <script src="<?php bloginfo('template_url'); ?>/scripts/cbpHorizontalSlideOutMenu.min.js"></script>
 <script>
 	var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
 </script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/scripts/scripts.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/scripts/linda.js"></script>
+
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

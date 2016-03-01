@@ -19,7 +19,10 @@ Header
 
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/resets.css">
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+		<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/shame.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/css/slide_out_menu/component.css" />
+
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
 	<?php wp_head(); ?>
 	<script src="<?php bloginfo('template_url'); ?>/scripts/modernizr.custom.js"></script>
@@ -34,10 +37,13 @@ Header
 		<nav id="top_menu">
 			<div class="container">
 				<div class="top_branding">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php bloginfo('template_url'); ?>/img/logo_designaholic.svg" alt="Designaholic"></a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php bloginfo('template_url'); ?>/img/logo_designaholic.jpg" alt="Designaholic"></a>
+				</div>
+				<div class="burger" id="burger">
+					<div></div><div></div><div></div>
 				</div><?php
 				if(get_field('main_menu', 'options')) {
-					echo '<ul>';
+					echo '<ul id="list">';
 					while (have_rows('main_menu', 'options')) {
 						the_row();
 						$check = get_sub_field('ext_url');
@@ -54,8 +60,19 @@ Header
 					}
 					echo '</ul>';
 				} ?>
+				<div class="search" id="search">
+					<a href="#">Buscar</a>
+				</div>
 			</div>
 		</nav>
 
 		<?php get_template_part('inc/top_slide_out_menu'); ?>
+
+		<div class="searchbox">
+			<form method="get" id="search_form" action="<?php bloginfo('home'); ?>"/>
+				<input type="search" placeholder="Escribe aquí para buscar:" class="text" name="s">
+				<input type="submit" class="submit" value="BUSCAR" />
+			</form>
+		</div>
+
 	</header>
