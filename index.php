@@ -1,7 +1,7 @@
 <?php
 /*
 Designaholic Templates
-Reciente
+Template Name: Reciente
 */
 ?>
 
@@ -12,6 +12,10 @@ Reciente
 
 		if(is_search()) {
 			echo '<h2>Resultados para: '.get_search_query().'</h2>';
+		} elseif(is_tag()) { ?>
+			<h2><?php single_tag_title('Etiqueta: '); ?></h2><?php
+		} elseif(is_archive()) { ?>
+			<h2>Archivo</h2><?php
 		} else {
 			echo '<h2>Reciente</h2>';
 		}
