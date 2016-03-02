@@ -1,7 +1,7 @@
 <?php
 /*
 Designaholic Templates
-Page
+Template Name: Page
 */
 ?>
 
