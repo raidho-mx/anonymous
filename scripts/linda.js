@@ -3,13 +3,13 @@ $('.slider-for').slick({
 	slidesToScroll: 1,
 	arrows: true	,
 	fade: true,
-	asNavFor: '.slider-nav',
+	asNavFor: '.slider-nav'
 });
 
 $('.slider-nav').slick({
 	variableWidth: true,
 	arrows: false,
-	slidesToShow: 5,
+	slidesToShow: 2,
 	slidesToScroll: 1,
 	asNavFor: '.slider-for',
 	dots: false,
@@ -19,7 +19,14 @@ $('.slider-nav').slick({
 
 var n = $( ".img_cont" ).length;
 $( ".counter span" ).append( $( "<b></b>" ) );
-$( ".counter span b" ).text( "de " + n );
+// $( ".counter span b" ).text( "de " + n );
+
+$('.galeria_thumbnails img').one('load', function() {
+	$(this).css({ opacity: 1 });
+}).each(function() {
+	if(this.complete) $(this).load();
+});
+
 
 // Toggle Menu
 $("#burger").click(function(){

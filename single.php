@@ -19,12 +19,55 @@ Single Post
 			$images = get_field('gallery');
 			if(has_category('galerias') AND $images ) {
 
-				echo 'galerias';
+
+				// echo '<pre>GALLERY exists.';
+				$a = 1;
+				$amount = count( $images );
 
 				if($images) {
-					echo ' :D';
+					// echo ' IMAGES inside it exist.</pre>';
+
+					if( $images ): ?>
+				<div class="galeria_thumbnails fondo_gris_calido">
+					<div class="container">
+						<div class="slider-for"><?php
+						foreach( $images as $image ):
+
+							if($image['caption']) { $caption = $image['caption']; }
+							elseif($image['description']) { $caption = $image['description']; }
+							else { $caption = $image['alt']; }
+
+							?>
+							<div>
+								<div class="img_cont">
+									<div>
+										<div class="counter">
+											<p><span><?php echo$a++ ;?> de <?php echo $amount; ?></span>  — <?php echo $caption; ?></p>
+										</div>
+										<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>">
+									</div>
+								</div>
+							</div><?php
+
+						endforeach; ?>
+						</div>
+						<div class="slider-nav"><?php
+						foreach( $images as $image ):
+
+							?>
+							<div>
+								<img src="<?php echo $image['sizes']['thumbnail']; ?>">
+							</div><?php
+
+						endforeach; ?>
+						</div>
+					</div>
+				</div><?php
+					endif;
+
+
 				} else {
-					echo ' :(';
+					// echo ' But it has NO IMAGES.</pre>';
 				}
 
 			} elseif(has_post_thumbnail()) { ?>

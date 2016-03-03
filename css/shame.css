@@ -16,3 +16,4 @@ body.search {
     background-color: #fb0d1b;
     color: white;
 }
+.galeria_thumbnails img { opacity: 0; }
