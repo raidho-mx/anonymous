@@ -50,11 +50,27 @@
 			}
 			return $class;
 		}
-		function checkTag() {
+		function checkTag($linked = false) {
 			if(has_category('galerias')) {
-				$preTitle = '<span class="rojo_txt">Galeria:</span> ';
+				$idObj = get_category_by_slug('galerias');
+				$realID = $idObj->term_id;
+				$catName = get_cat_name($realID);
+				$catUrl = get_category_link($realID);
+				if($linked) {
+					$preTitle = '<a href="'. $catUrl .'" class="rojo_txt">'. $catName .':</a> ';
+				} else {
+					$preTitle = '<span class="rojo_txt">'. $catName .':</span> ';
+				}
 			} elseif(has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) {
-				$preTitle = '<span class="rojo_txt">Videos:</span> ';
+				$idObj = get_category_by_slug('videos-creativos');
+				$realID = $idObj->term_id;
+				$catName = get_cat_name($realID);
+				$catUrl = get_category_link($realID);
+				if($linked) {
+					$preTitle = '<a href="'. $catUrl .'" class="rojo_txt">'. $catName .':</a> ';
+				} else {
+					$preTitle = '<span class="rojo_txt">'. $catName .':</span> ';
+				}
 			} else {
 				$preTitle = '';
 			}

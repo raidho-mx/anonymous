@@ -10,7 +10,7 @@ Single Post
 	if ( have_posts() ) while ( have_posts() ) : the_post();
 
 	$class = checkClass();
-	$preTitle = checkTag(); ?>
+	$preTitle = checkTag(true); ?>
 
 
 	<div class="single_post <?php echo $class; ?>" id="sp_portada_grande">
@@ -87,7 +87,19 @@ Single Post
 				<!-- Cuerpo principal post -->
 				<article class="cuerpo_post eight columns">
 
-					<p class="categoria_tag"><?php the_category(', '); ?></p>
+					<p class="categoria_tag"><?php
+					// the_category(', ');
+
+					$cats = get_the_category();
+					foreach ($cats as $cat) {
+					$catUrl = get_category_link($cat->term_id);
+						if($cat->name == 'Videos' OR $cat->name == 'Sin categoría' OR $cat->name == 'Galerias') {
+						} else {
+							echo '<a href="'.$catUrl.'">'.$cat->name.'</a> ';
+						}
+					}
+
+					?></p>
 					<h1><?php echo $preTitle; ?><?php the_title(); ?></h1>
 					<div class="meta">
 						<span><?php the_time('l j \d\e F \d\e Y'); ?></span>
