@@ -20,3 +20,14 @@ body.search {
 
 .single_post .cuerpo_post .categoria_tag a:after {content: ', ';}
 .single_post .cuerpo_post .categoria_tag a:nth-last-child(1):after {content: '';}
+
+.external_author img {
+	float: left;
+}
+
+.external_author {
+	clear: both;
+	overflow: auto;
+	margin-bottom: 3em;
+	color: #919191;
+}

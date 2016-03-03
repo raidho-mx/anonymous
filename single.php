@@ -125,11 +125,42 @@ Single Post
 				<?php get_template_part('inc/post_sidebar'); ?>
 
 			</div>
-			<!-- Termina row para contener post + sidebar -->
+			<!-- Termina row para contener post + sidebar --><?php
+
+
+		while(have_rows('author')) :
+			the_row();
+			$img = get_sub_field('img');
+			if(get_sub_field('name')) : ?>
+
+
+			<div class="external_author">
+				<p>Artículo propuesto por:</p>
+				<div class="row fluid">
+					<img class="profile_img two columns" src="<?php echo $img['sizes']['thumbnail']; ?>" >
+					<h5 class="six columns"><?php
+						if(get_sub_field('twitter')) {
+							echo '<a href="http://www.twitter.com/'.get_sub_field('twitter').'" class="rojo_txt">'.get_sub_field('name').'</a> ';
+						} else {
+							echo '<strong class="rojo_txt">'. get_sub_field('name') .'</a> ';
+						}
+						if(get_sub_field('age')) echo '('.get_sub_field('age').')';
+						if(get_sub_field('occupation')) echo ', '.get_sub_field('occupation').'. ';
+						if(get_sub_field('location')) echo get_sub_field('location').'.';
+						echo '<br>';
+						if(get_sub_field('sitio_web')) echo '<a href="'.get_sub_field('sitio_web').'" class="rojo_txt">'.get_sub_field('sitio_web').'</a>'; ?>
+					</h5>
+				</div>
+			</div><?php
+
+			endif;
+		endwhile; ?>
 
 			<!-- Artículos Relacionados -->
 			<div class="post_relacionado"><?php
 
+				related_posts();
+/*
 				$recent = new WP_Query( array( 'posts_per_page' => 4 ) );
 
 				if ( $recent->have_posts() ) : ?>
@@ -141,7 +172,7 @@ Single Post
 					} ?>
 					</div><?php
 				endif;
-				wp_reset_postdata(); ?>
+				wp_reset_postdata(); */ ?>
 
 			</div>
 
