@@ -11,8 +11,9 @@
 
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-	add_editor_style('css/wysiwyg.css');
+	// add_editor_style('css/wysiwyg.css');
 
+	add_image_size( 'usual', 630, 340, true );	// thumb : 300   med : 600   large : 1280×1080
 
 
 	/*  ACF - Options  */
@@ -86,7 +87,7 @@
 			<div class="<?php echo $class.' '.$i; ?>">
 				<a href="<?php the_permalink(); ?>"><?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail();
+						the_post_thumbnail('usual');
 					} if($meta) {
 						echo '<div class="meta"><span>';
 						foreach ($cats as $cat) {
