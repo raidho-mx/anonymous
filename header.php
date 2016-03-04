@@ -11,7 +11,6 @@ Header
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title><?php wp_title(); ?></title>
-	<meta name="description" content="<?php bloginfo('description'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="apple-touch-icon" href="<?php bloginfo('template_url'); ?>/img/apple-touch-icon.png">
@@ -19,12 +18,13 @@ Header
 
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/resets.css">
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-		<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/shame.css">
+	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/shame.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/css/slide_out_menu/component.css" />
 
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
 	<?php wp_head(); ?>
+	<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/scripts/modernizr.custom.js"></script>
 
 </head>

@@ -108,17 +108,7 @@ Single Post
 
 					<?php the_content(); ?>
 
-					<div class="post_sharer">
-						<p>Comparte este artículo:</p>
-						<ul class="follow_links">
-							<li class="follow_twitter"><a href="#">Tw</a></li><li class="follow_google">
-								<a href="#">G+</a></li><li class="follow_facebook">
-								<a href="#">Fb</a></li><li class="follow_linkedin">
-								<a href="#">Rss</a></li><li class="follow_pinterest">
-								<a href="#">Pi</a>
-							</li>
-						</ul>
-					</div>
+					<?php get_template_part('inc/sharer'); ?>
 
 				</article>
 
@@ -159,20 +149,7 @@ Single Post
 			<!-- Artículos Relacionados -->
 			<div class="post_relacionado"><?php
 
-				related_posts();
-/*
-				$recent = new WP_Query( array( 'posts_per_page' => 4 ) );
-
-				if ( $recent->have_posts() ) : ?>
-					<h2>Relacionado</h2>
-					<div class="row"><?php
-					while ( $recent->have_posts() ) {
-						$recent->the_post();
-						cards(6);
-					} ?>
-					</div><?php
-				endif;
-				wp_reset_postdata(); */ ?>
+				related_posts(); ?>
 
 			</div>
 

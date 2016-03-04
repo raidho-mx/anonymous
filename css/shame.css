@@ -31,3 +31,6 @@ body.search {
 	margin-bottom: 3em;
 	color: #919191;
 }
+ul.follow_links li a {
+	cursor: pointer;
+}
