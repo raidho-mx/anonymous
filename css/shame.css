@@ -34,3 +34,6 @@ body.search {
 ul.follow_links li a {
 	cursor: pointer;
 }
+#animacion_contenedor a {
+	color: #FFF;
+}

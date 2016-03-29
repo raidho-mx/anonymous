@@ -22,7 +22,7 @@ Autores
 		<div class="row fluid autores_listado"><?php
 
 			// The Query
-			$user_query = new WP_User_Query( array( 'exclude' => $exclude, 'number' => -1 ) );
+			$user_query = new WP_User_Query( array( 'include' => $exclude, 'number' => -1 ) );
 
 			// User Loop
 			if ( ! empty( $user_query->results ) ) {

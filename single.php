@@ -149,7 +149,7 @@ Single Post
 			<!-- Artículos Relacionados -->
 			<div class="post_relacionado"><?php
 
-				related_posts(); ?>
+				// YARPP DEPRECATED BY (MT) :: related_posts(); ?>
 
 			</div>
 
