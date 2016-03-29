@@ -230,7 +230,7 @@ if( have_rows('home_modules') ):
 					$text = get_sub_field('text');
 
 					if($link) echo '<a href="'.$link.'">';
-					if($img) echo '<img src="'.$img['sizes']['large'].'" alt="'.$img['caption'].'">';
+					if($img) echo '<img src="'.$img['sizes']['usual'].'" alt="'.$img['caption'].'">';
 					if($text) echo $text;
 					if($link) echo '</a>';
 
@@ -249,7 +249,7 @@ if( have_rows('home_modules') ):
 					$text = get_sub_field('text');
 
 					if($link) echo '<a href="'.$link.'">';
-					if($img) echo '<img src="'.$img['sizes']['large'].'" alt="'.$img['caption'].'">';
+					if($img) echo '<img src="'.$img['sizes']['usual'].'" alt="'.$img['caption'].'">';
 					if($text) echo '<h2>'.$text.'</h2>';
 					if($link) echo '</a>';
 
@@ -268,7 +268,7 @@ if( have_rows('home_modules') ):
 					$text = get_sub_field('text');
 
 					if($link) echo '<a href="'.$link.'">';
-					if($img) echo '<img src="'.$img['sizes']['large'].'" alt="'.$img['caption'].'">';
+					if($img) echo '<img src="'.$img['sizes']['usual'].'" alt="'.$img['caption'].'">';
 					if($text) echo $text;
 					if($link) echo '</a>';
 

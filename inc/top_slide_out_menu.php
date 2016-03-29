@@ -26,7 +26,7 @@ if(get_field('secondary_menu', 'options')) : ?>
 						$preTitle = checkTag(); ?>
 						<li class="three columns articulo <?php echo $class; ?>">
 							<a href="<?php the_permalink(); ?>">
-								<?php the_post_thumbnail(); ?>
+								<?php the_post_thumbnail('usual'); ?>
 								<small><?php echo $preTitle.' '.get_the_title(); ?></small>
 							</a>
 						</li><?php
