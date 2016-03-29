@@ -16,6 +16,7 @@ Single Post
 	<div class="single_post <?php echo $class; ?>" id="sp_portada_grande">
 		<div class="container spacer"><?php
 
+			$vidEmbed = get_field('vid_embed');
 			$images = get_field('gallery');
 			if(has_category('galerias') AND $images ) {
 
@@ -69,6 +70,12 @@ Single Post
 				} else {
 					// echo ' But it has NO IMAGES.</pre>';
 				}
+
+			} elseif ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) { ?>
+
+					<div class="fit-vid">
+						<?php echo $vidEmbed; ?>
+					</div><?php
 
 			} elseif(has_post_thumbnail()) { ?>
 				<div class="portada_grande">

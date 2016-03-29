@@ -37,3 +37,7 @@ ul.follow_links li a {
 #animacion_contenedor a {
 	color: #FFF;
 }
+
+.single .fit-vid {
+    margin-bottom: 3rem;
+}
