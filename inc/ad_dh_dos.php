@@ -8,7 +8,7 @@ Ad DH 2
 <!-- Ad horizontal --><?php
 
 	$rows = get_field('txt_ads', 'option');
-	$rand_row = $rows[ array_rand( $rows ) ];
+	if($rows) $rand_row = $rows[ array_rand( $rows ) ];
 	$img = $rand_row['img'];
 
 	if($rows) : ?>
