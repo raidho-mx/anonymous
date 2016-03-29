@@ -1,7 +1,7 @@
 <?php
 /*
 Designaholic Templates
-Categorías
+Archivo de Tags
 */
 ?>
 
@@ -23,7 +23,7 @@ Categorías
 
 		$inTags = get_field('include_tags');
 		$args = array(
-			'orderby' => 'id',
+			'orderby' => 'include',
 			'hide_empty' => 1,
 			'include' => $inTags
 		);
