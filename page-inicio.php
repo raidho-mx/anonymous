@@ -93,7 +93,7 @@ if( have_rows('home_modules') ):
 					while ( $neue_q->have_posts() ) {
 						$neue_q->the_post();
 						$count++;
-						cards(363, 1, $count);
+						cards(363, $count, TRUE);
 					} ?>
 				</div><?php
 				else :

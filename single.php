@@ -147,11 +147,7 @@ Single Post
 		endwhile; ?>
 
 			<!-- Artículos Relacionados -->
-			<div class="post_relacionado"><?php
-
-				// YARPP DEPRECATED BY (MT) :: related_posts(); ?>
-
-			</div>
+			<?php echo do_shortcode('[jprel]');  ?>
 
 			<?php get_template_part('inc/ad_dh_dos'); ?>
 

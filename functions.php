@@ -40,18 +40,20 @@
 
 	/*  Loop  */
 
-		function checkClass() {
-			if(has_category('galerias')) {
+		function checkClass($id = null) {
+			if(has_category('galerias', $id)) {
 				$class = ' galeria';
-			} elseif(has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) {
+			} elseif(has_category('videos-creativos', $id) || has_category('conferencias-videos-creativos', $id) || has_category('entrevistas-videos-creativos', $id) || has_category('procesos-videos-creativos', $id)) {
 				$class = ' video';
 			} else {
 				$class = '';
 			}
 			return $class;
 		}
-		function checkTag($linked = false) {
-			if(has_category('galerias')) {
+
+
+		function checkTag($linked = false, $id = null) {
+			if(has_category('galerias', $id)) {
 				$idObj = get_category_by_slug('galerias');
 				$realID = $idObj->term_id;
 				$catName = get_cat_name($realID);
@@ -61,7 +63,7 @@
 				} else {
 					$preTitle = '<span class="rojo_txt">'. $catName .':</span> ';
 				}
-			} elseif(has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) {
+			} elseif(has_category('videos-creativos', $id) || has_category('conferencias-videos-creativos', $id) || has_category('entrevistas-videos-creativos', $id) || has_category('procesos-videos-creativos', $id)) {
 				$idObj = get_category_by_slug('videos-creativos');
 				$realID = $idObj->term_id;
 				$catName = get_cat_name($realID);
@@ -80,7 +82,7 @@
 
 
 
-		function cards($columns, $meta = TRUE, $i){
+		function cards($columns = null, $i = null, $meta = TRUE){
 			if($columns == '0') 	{ $class = ''; }
 			elseif($columns == '2') { $class = 'six columns'; }
 			elseif($columns == '3') { $class = 'four columns'; }
@@ -120,6 +122,9 @@
 			</div><?php
 		}
 
+
+
+
 		function patrocinadores($title = FALSE) {
 			$rows = get_field('img_ads', 'option');
 			if($rows) : ?>
@@ -144,3 +149,64 @@
 		</div><?php
 			endif;
 		}
+
+
+
+
+
+
+	// Edit JETPACK: Related Posts
+
+		// Hide Native Posts
+		function jetpackme_remove_rp() {
+			if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+				$jprp = Jetpack_RelatedPosts::init();
+				$callback = array( $jprp, 'filter_add_target_to_dom' );
+				remove_filter( 'the_content', $callback, 40 );
+			}
+		}
+		add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+
+
+		// Custom Markup
+		function jetpackme_custom_related( $atts ) {
+			$posts_titles = array();
+
+			if ( class_exists( 'Jetpack_RelatedPosts' ) && method_exists( 'Jetpack_RelatedPosts', 'init_raw' ) ) {
+				$related = Jetpack_RelatedPosts::init_raw()
+					->set_query_name( 'jetpackme-shortcode' ) // Optional, name can be anything
+					->get_for_post_id(
+						get_the_ID(),
+						array( 'size' => 4 )
+					);
+
+				if ( $related ) { ?>
+
+					<div class="post_relacionado">
+						<h2>Relacionado</h2>
+						<div class="row"><?php
+
+					foreach ( $related as $result ) {
+						// Get the related post IDs
+						$rpID = get_post( $result[ 'id' ] );
+						$preTitle = checkTag(FALSE, $rpID); ?>
+						<div class="two columns articulo<?php print checkClass($rpID); ?>">
+							<a href="<?php print get_permalink($rpID); ?>"> <?php
+								if ( has_post_thumbnail($rpID) ) {
+									$url = wp_get_attachment_url( get_post_thumbnail_id($rpID), 'usual' ); ?>
+									<img src="<?php print_r($url); ?>"><?php
+								}
+								echo '<h5>'.$preTitle.' '.$rpID->post_title.'</h5>'; ?>
+							</a>
+						</div><?php
+					} ?>
+
+						</div>
+					</div><?php
+
+				}
+			}
+
+		}
+		// Create a [jprel] shortcode
+		add_shortcode( 'jprel', 'jetpackme_custom_related' );
