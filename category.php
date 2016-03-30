@@ -62,21 +62,21 @@ Reciente
 					cards(3);
 				}
 			endif;
-			wp_reset_postdata(); ?>
+			wp_reset_postdata();
 
 
-			<div class="four columns articulo ">
-				<a href="<?php echo $adUrl; ?>">
-					<img width="600" src="<?php echo $adImg['sizes']['large']; ?>">
-					<h4><strong><?php echo $adTitle; ?></strong> <?php echo $adMore; ?></h4>
-					<?php if($adButton) echo '<div><button>'.$adButton.'</button></div>'; ?>
-				</a>
-				<?php if( get_field('ads_link', 'option') ) echo '<div class="meta"><span>'.get_field('ads_link', 'option').'</span></div>'; ?>
-			</div><?php
+			if($catID == $hasRel) { ?>
 
+				<div class="four columns articulo ">
+					<a href="<?php echo $adUrl; ?>">
+						<img width="600" src="<?php echo $adImg['sizes']['large']; ?>">
+						<h4><strong><?php echo $adTitle; ?></strong> <?php echo $adMore; ?></h4>
+						<?php if($adButton) echo '<div><button>'.$adButton.'</button></div>'; ?>
+					</a>
+					<?php if( get_field('ads_link', 'option') ) echo '<div class="meta"><span>'.get_field('ads_link', 'option').'</span></div>'; ?>
+				</div><?php
 
-
-
+			}
 			echo '</div>';
 
 
