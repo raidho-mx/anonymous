@@ -81,15 +81,18 @@ wp_footer(); ?>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/scripts/scripts.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/scripts/linda.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.fitvids.js"></script>
-<script>
-	$(document).ready(function(){
-		$(".fit-vid").fitVids({
-			'customSelector': 'iframe[src*="ted.com"]'
+<script src="<?php bloginfo('template_url'); ?>/scripts/linda.js"></script><?php
+
+if(is_single()) { ?>
+	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.fitvids.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".fit-vid").fitVids({
+				'customSelector': 'iframe[src*="ted.com"]'
+			});
 		});
-	});
-</script>
+	</script><?php
+} ?>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
