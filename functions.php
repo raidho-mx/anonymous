@@ -210,3 +210,48 @@
 		}
 		// Create a [jprel] shortcode
 		add_shortcode( 'jprel', 'jetpackme_custom_related' );
+
+
+
+
+		// function foobar_func( $atts ){
+		// 	return "foo and bar";
+		// }
+		// add_shortcode( 'foobar', 'foobar_func' );
+
+
+
+
+		// Designaholic Quote
+
+		function dh_quote_engine( $atts ) {
+			$a = shortcode_atts( array(
+				'quote' => '',
+				'author' => '',
+				'about' => '',
+				'thumb' => ''
+			), $atts );
+
+			$hilo = '<div class="post_quote">';
+
+				if($a['quote']) $hilo .= '<blockquote>"'. $a['quote'] .'"</blockquote>';
+
+			$hilo .= '<div class="quote_meta">';
+
+				if($a['thumb']) $hilo .= '<div class="quote_pic" style="background-image: url('. $a['thumb'] .')"></div>';
+
+				if($a['author'] OR $a['about']) $hilo .= '<p>';
+
+					if($a['author']) $hilo .= '<span class="rojo_txt">'. $a['author'] .'</span>';
+
+					if($a['about']) $hilo .= $a['about'];
+
+				if($a['author'] OR $a['about']) $hilo .= '</p>';
+
+			$hilo .= '</div></div>';
+
+
+			return $hilo;
+
+		}
+		add_shortcode( 'dh_quote', 'dh_quote_engine' );
