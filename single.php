@@ -17,6 +17,7 @@ Single Post
 		<div class="container spacer"><?php
 
 			$vidEmbed = get_field('vid_embed');
+			$imgOptions = get_field('ftd_img_options');
 			$images = get_field('gallery');
 			if(has_category('galerias') AND $images ) {
 
@@ -77,7 +78,7 @@ Single Post
 						<?php echo $vidEmbed; ?>
 					</div><?php
 
-			} elseif(has_post_thumbnail()) { ?>
+			} elseif(has_post_thumbnail() AND ($imgOptions == 'huge')) { ?>
 				<div class="portada_grande">
 					<div class="row">
 						<div class="twelve columns">
@@ -92,7 +93,12 @@ Single Post
 			<div class="row">
 
 				<!-- Cuerpo principal post -->
-				<article class="cuerpo_post eight columns">
+				<article class="cuerpo_post eight columns"><?php
+
+					if ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) {} 
+					elseif((has_post_thumbnail() AND ($imgOptions == 'big')) OR $imgOptions == '' ) {
+						the_post_thumbnail();
+					} ?>
 
 					<p class="categoria_tag"><?php
 					// the_category(', ');
