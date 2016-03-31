@@ -90,6 +90,21 @@ if(is_single()) { ?>
 			$(".fit-vid").fitVids({
 				'customSelector': 'iframe[src*="ted.com"]'
 			});
+			$( "#commentform #comment" ).insertAfter( "#commentform #email" );
+			// $( "ul.comentarios_listado li time" ).insertAfter( "#commentform #email" );
+
+			$( "ul.comentarios_listado li" ).each(function(){
+				var singleTime = $(this).find('time');
+				var singleAuthor = $(this).find('.comment-author');
+				var singleSays = $(this).find('.says');
+				singleSays.html("comentó el ");
+				singleAuthor.append(singleTime).append(":");
+			});
+
+
+
+
+
 		});
 	</script><?php
 } ?>
