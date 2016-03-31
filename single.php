@@ -95,7 +95,7 @@ Single Post
 				<!-- Cuerpo principal post -->
 				<article class="cuerpo_post eight columns"><?php
 
-					if ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) {} 
+					if ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) {}
 					elseif((has_post_thumbnail() AND ($imgOptions == 'big')) OR $imgOptions == '' ) {
 						the_post_thumbnail();
 					} ?>
@@ -131,6 +131,10 @@ Single Post
 			<!-- Termina row para contener post + sidebar --><?php
 
 
+
+
+		/* Get the External author: Desactivado por JDE
+
 		while(have_rows('author')) :
 			the_row();
 			$img = get_sub_field('img');
@@ -157,7 +161,9 @@ Single Post
 			</div><?php
 
 			endif;
-		endwhile; ?>
+		endwhile;
+
+		*/ ?>
 
 			<!-- Artículos Relacionados -->
 			<?php echo do_shortcode('[jprel]');  ?>
