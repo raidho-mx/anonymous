@@ -16,7 +16,8 @@ if(get_field('secondary_menu', 'options')) : ?>
 				<a href="#"><?php echo $term->name; ?></a><?php
 
 
-				$taxQ = new WP_Query( array( 'category_name' => $term->name, 'posts_per_page' => 4 ) );
+				$taxQ = new WP_Query( array( 'category_name' => $term->slug, 'posts_per_page' => 4 ) );
+
 				if ( $taxQ->have_posts() ) : ?>
 
 				<ul class="cbp-hssubmenu row fluid"><?php
