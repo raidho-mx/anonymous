@@ -44,7 +44,7 @@ wp_footer(); ?>
 						$color = '><a style="background-color:'.get_sub_field('color').'" ';
 					}
 
-					echo '<li '.$color.' href="'.get_sub_field('url').'" title="'.$red.'">'.$network['name'].'</a></li>';
+					echo '<li '.$color.' href="'.get_sub_field('url').'" title="'.$red.'" target="_blank">'.$network['name'].'</a></li>';
 				} ?>
 				</ul><?php
 
