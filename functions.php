@@ -214,10 +214,45 @@
 
 
 
-		// function foobar_func( $atts ){
-		// 	return "foo and bar";
-		// }
-		// add_shortcode( 'foobar', 'foobar_func' );
+
+
+
+
+	/* Shortcodes */
+
+		// FB Albums
+
+		function fba_engine( $atts ) {
+			$a = shortcode_atts( array(
+				'url' => '',
+			), $atts );
+
+			if($a['url']) {
+
+				$mystring = $a['url'];
+				$findme = 'embedsocial';
+				$pos = strpos($mystring, $findme);
+
+				if ($pos === false) {
+					list($shit,$rawGold) = explode('a.', $a['url']);
+					list($gold,$shat) = explode('.', $rawGold);
+					$hilo = '<iframe src="//embedsocial.com/facebook_album/album_photos/'.$gold.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>';
+
+				} else {
+					$hilo = '<iframe src="'.$mystring.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>';
+
+				}
+
+			} else {
+				// $hilo = '<a href="'.$a['url'].'">View on Facebook</a>'; Imposible
+				$hilo = '';
+			}
+
+
+			return $hilo;
+
+		}
+		add_shortcode( 'fbalbum', 'fba_engine' );
 
 
 

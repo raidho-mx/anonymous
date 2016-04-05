@@ -69,3 +69,17 @@ ul.comentarios_listado li p:first-child {
 ul.comentarios_listado li .comment-content {
 	margin: 1em 0;
 }
+
+
+
+
+
+article.cuerpo_post {
+	position: relative;
+}
+
+article.cuerpo_post iframe {
+	width: 100%;
+	min-height: 1500px;
+	overflow: auto;
+}
