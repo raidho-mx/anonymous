@@ -46,7 +46,9 @@ Single Post
 										<div class="counter">
 											<p><span><?php echo$a++ ;?> de <?php echo $amount; ?></span>  — <?php echo $caption; ?></p>
 										</div>
-										<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>">
+										<img src="<?php
+										// echo $image['sizes']['large']; temporal en lo que corremos el regenerate images
+										echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
 									</div>
 								</div>
 							</div><?php
@@ -95,7 +97,7 @@ Single Post
 				<!-- Cuerpo principal post -->
 				<article class="cuerpo_post eight columns"><?php
 
-					if ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) {}
+					if ( ((has_category('videos-creativos') || has_category('conferencias-videos-creativos') || has_category('entrevistas-videos-creativos') || has_category('procesos-videos-creativos')) AND $vidEmbed) OR (has_category('galerias') AND $images) ) {}
 					elseif((has_post_thumbnail() AND ($imgOptions == 'big')) OR $imgOptions == '' ) {
 						the_post_thumbnail();
 					} ?>
