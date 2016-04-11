@@ -135,3 +135,25 @@ article.cuerpo_post iframe {
 		text-align: left;
 	}
 }
+
+
+
+
+
+
+
+.articulo.video:before,
+.articulo.gallery:before {
+	content: '';
+	background-image: url(../img/icon_gallery.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: red;
+	width: 2.5rem;
+	height: 2rem;
+	display: block;
+	position: absolute;
+}
+.articulo.video:before {
+	background-image: url(../img/icon_video.svg);
+}
