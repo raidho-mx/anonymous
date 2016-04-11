@@ -17,11 +17,31 @@ wp_footer(); ?>
 		<div class="row">
 			<div class="four columns">
 				<h4>Suscríbete a nuestro newsletter</h4>
-				<form action="" class="forma_negativo">
-					<input type="text" placeholder="Tu Nombre">
-					<input type="text" placeholder="Tu Correo">
-					<input type="submit" value="Suscríbete">
-				</form>
+
+				<div class="newsLetterContain">
+					<form id="mensual" action="//designaholic.us4.list-manage.com/subscribe/post?u=24f3f360c7d050182748142ae&amp;id=7435e069c4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						<div id="mc_embed_signup_scroll">
+							<input type="text" value="" name="NOMBRE" class="required" id="mce-NOMBRE" placeholder="Tu Nombre">
+							<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Tu Correo" required>
+							<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+							<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_24f3f360c7d050182748142ae_7435e069c4" tabindex="-1" value=""></div>
+							<div class="clear"><input type="submit" value="Suscríbete" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+						</div>
+					</form>
+
+					<form id="diario" action="http://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&quot;http://feedburner.google.com/fb/a/mailverify?uri=designaholic/mx&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true" target="popupwindow" style="display:none">
+						<input type="text" value="" name="NOMBRE" class="required" id="mce-NOMBRE" placeholder="Tu Nombre" disabled>
+						<input type="email" name="email" onblur="if(this.value=='') this.value='Tu Correo'" onclick="if(this.value=='Tu Correo') this.value=''" placeholder="Tu Correo" id="mce-EMAIL">
+						<input type="submit" value="Suscríbete" name="subscribe" id="mc-embedded-subscribe" class="boton">
+						<input name="uri" type="hidden" value="designaholic/mx">
+						<input name="loc" type="hidden" value="en_US">
+					</form>
+
+					<form id="newsLetterChoose">
+						<input type="radio" name="nl" value="mensualCh" id="mensualCh" checked> <label for="mensualCh">Mensual</label>
+						<input type="radio" name="nl" value="diarioCh" id="diarioCh"> <label for="diarioCh">Diario</label>
+					</form>
+				</div>
 			</div>
 			<div class="four columns"><?php
 			if(get_field('social', 'options')) : ?>
@@ -100,23 +120,18 @@ if(is_single()) { ?>
 				singleSays.html("comentó el ");
 				singleAuthor.append(singleTime).append(":");
 			});
-
-
-
-
-
 		});
 	</script><?php
 } ?>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<?php // Remove while Staging. ?>
 <script>
 (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 	function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
 	e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 	e.src='https://www.google-analytics.com/analytics.js';
 	r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-	ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+	ga('create','UA-2607823-6','auto');ga('send','pageview');
 </script>
 </body>
 </html>

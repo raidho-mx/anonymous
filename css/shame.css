@@ -83,3 +83,55 @@ article.cuerpo_post iframe {
 	min-height: 1500px;
 	overflow: auto;
 }
+
+
+
+
+
+
+.newsLetterContain {
+	position: relative;
+	min-height: 14em;
+	margin-bottom: 3rem;
+}
+.newsLetterContain form:nth-child(2) {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	display: block;
+}
+
+#footer input {
+	color: white;
+}
+#footer input:disabled {
+	opacity: .15;
+}
+
+#newsLetterChoose {
+	text-align: right;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	margin-bottom: 1.5rem;
+}
+#newsLetterChoose label,
+#newsLetterChoose input {
+	display: inline;
+}
+#newsLetterChoose input {
+	position: relative;
+	top: -2px;
+}
+#newsLetterChoose input:nth-child(3) {
+	margin-left: 2em;
+}
+
+@media (min-width: 550px) and (max-width: 1000px) {
+	form#newsLetterChoose {
+		bottom: -3.5rem;
+		left: 0;
+		text-align: left;
+	}
+}

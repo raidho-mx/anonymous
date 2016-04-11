@@ -35,3 +35,17 @@ mask_container.onmouseover = function open_mask(){
 mask_container.onmouseout = function recover_mask(){
 		document.getElementById("anim_imagen").setAttribute("style","width: "+ clientWidth +"px;height: "+ clientHeight +"px;clip: rect("+ mask_init_top +"px, "+ mask_init_right +"px, "+ mask_init_bottom +"px, "+ mask_init_left +"px)");
 }
+
+
+$("input#mensualCh").click(function(){
+	if ($('form#diario').is(':visible')) {
+		$("form#diario").fadeOut('fast');
+		$("form#mensual").fadeIn('fast');
+	}
+});
+$("input#diarioCh").click(function(){
+	if ($('form#mensual').is(':visible')) {
+		$("form#mensual").fadeOut('fast');
+		$("form#diario").fadeIn('fast');
+	}
+});
