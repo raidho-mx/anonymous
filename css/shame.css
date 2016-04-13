@@ -157,3 +157,33 @@ article.cuerpo_post iframe {
 .articulo.video:before {
 	background-image: url(../img/icon_video.svg);
 }
+
+
+
+
+
+.wp-editor-tabs {
+	display: none;
+}
+.acf-form-fields > .acf-field {
+	padding: 2em 0 0 !important;
+	margin: 2em 0 !important;
+}
+a.acf-button.button {
+	padding-top: .8em;
+	margin-top: 1em;
+}
+.acf-input input[type=file] {
+	margin: .5rem 0;
+}
+.acf-input-prepend {
+	font-size: 14px !important;
+	line-height: 20px !important;
+	height: 100% !important;
+}
+input.acf-is-prepended {
+	border-radius: 0 !important;
+}
+.acf-field.no_lb {
+	border-left: 0 !important;
+}
