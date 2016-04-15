@@ -79,6 +79,9 @@ article.cuerpo_post {
 }
 
 article.cuerpo_post iframe {
+	max-width: 100%;
+}
+article.cuerpo_post iframe.fb_album {
 	width: 100%;
 	min-height: 1500px;
 	overflow: auto;
