@@ -18,29 +18,73 @@ if( have_rows('home_modules') ):
 		if( get_row_layout() == 'ftd_block' ):
 
 			$post = get_sub_field('ftd_posts');
-			$p_qeue = new WP_Query(array('p' => $post));
+			$p_qeue = new WP_Query(array('post__in' => $post));
+			$imgCount = A;
 
-			while($p_qeue->have_posts()) :
-				$p_qeue->the_post();
-				$imgUrl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
+			if($p_qeue->have_posts()) : ?>
+
 
 			<div id="home_destacado_principal" class="fondo_rojo">
-				<div id="animacion_contenedor" class="container">
-					<div id="anim_imagen">
-						<style>
-							#home_destacado_principal #animacion_contenedor #anim_imagen {background-image: url(<?php echo $imgUrl; ?>) !important;}
-						</style>
-					</div>
-					<a href="<?php the_permalink(); ?>">
-						<div class="big_title">
-							<h1 class="huge"><?php the_title(); ?></h1>
+				<div id="animacion_contenedor" class="container home-slider"><?php
+
+				while($p_qeue->have_posts()) :
+					$p_qeue->the_post();
+					$imgUrl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
+					<div>
+					<div>
+						<div class="anim_imagen" id="imgSrc<?php echo $imgCount; ?>">
+							<style>
+								#home_destacado_principal #animacion_contenedor #imgSrc<?php echo $imgCount++; ?> {background-image: url(<?php echo $imgUrl; ?>) !important;}
+							</style>
 						</div>
-					</a>
+						<a href="<?php the_permalink(); ?>">
+							<div class="big_title">
+								<h1 class="huge"><?php the_title(); ?></h1>
+							</div>
+						</a>
+					</div>
+				</div><?php
+
+				endwhile; ?>
+
 				</div>
 			</div><?php
-
-			endwhile;
+			endif;
 			wp_reset_postdata();
+ /*
+
+			<div id="home_destacado_principal" class="fondo_rojo">
+				<div id="animacion_contenedor" class="container home-slider">
+					<div>
+						<div>
+							<div id="anim_imagen" class="anim_imagen"></div>
+							<div class="big_title">
+								<h1 class="huge">1</h1>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div>
+							<div id="anim_imagen" class="anim_imagen"></div>
+							<div class="big_title">
+								<h1 class="huge">2</h1>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div>
+							<div id="anim_imagen" class="anim_imagen"></div>
+							<div class="big_title">
+								<h1 class="huge">3</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> */ ?>
+
+
+
+			<?php
 
 
 
