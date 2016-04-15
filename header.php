@@ -37,7 +37,7 @@ Header
 		<nav id="top_menu">
 			<div class="container">
 				<div class="top_branding">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php bloginfo('template_url'); ?>/img/logo_designaholic.jpg" alt="Designaholic"></a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php bloginfo('template_url'); ?>/img/logo_designaholic.svg" alt="Designaholic"></a>
 				</div>
 				<div class="burger" id="burger">
 					<div></div><div></div><div></div>
