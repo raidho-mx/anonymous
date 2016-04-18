@@ -110,7 +110,6 @@ if(is_single()) { ?>
 				'customSelector': 'iframe[src*="ted.com"]'
 			});
 			$( "#commentform #comment" ).insertAfter( "#commentform #email" );
-			// $( "ul.comentarios_listado li time" ).insertAfter( "#commentform #email" );
 
 			$( "ul.comentarios_listado li" ).each(function(){
 				var singleTime = $(this).find('time');
@@ -121,6 +120,8 @@ if(is_single()) { ?>
 			});
 		});
 	</script><?php
+} elseif(is_front_page()) { ?>
+	<script src="<?php bloginfo('template_url'); ?>/scripts/home.js"></script><?php
 } ?>
 
 <?php // Remove while Staging. ?>
