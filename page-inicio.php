@@ -51,40 +51,6 @@ if( have_rows('home_modules') ):
 			</div><?php
 			endif;
 			wp_reset_postdata();
- /*
-
-			<div id="home_destacado_principal" class="fondo_rojo">
-				<div id="animacion_contenedor" class="container home-slider">
-					<div>
-						<div>
-							<div id="anim_imagen" class="anim_imagen"></div>
-							<div class="big_title">
-								<h1 class="huge">1</h1>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div>
-							<div id="anim_imagen" class="anim_imagen"></div>
-							<div class="big_title">
-								<h1 class="huge">2</h1>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div>
-							<div id="anim_imagen" class="anim_imagen"></div>
-							<div class="big_title">
-								<h1 class="huge">3</h1>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */ ?>
-
-
-
-			<?php
 
 
 
@@ -127,9 +93,19 @@ if( have_rows('home_modules') ):
 				$neue_q = new WP_Query( $args );
 			} ?>
 
-			<div class="container spacer"><?php
-
-				echo '<h2>'.$selTermID->name.'</h2>';
+			<div class="container spacer">
+				<h2><?php
+					if(get_sub_field('choose') == 'tags') {
+						$noSpaces = str_replace(' ', '', $selTermID->name);
+						$hashPos = strpos($noSpaces, '#');
+						if ($hashPos === 0) {
+							echo $noSpaces;
+						} else {
+							echo '#'.$noSpaces;
+						}
+					} else {
+						echo $selTermID->name;
+					} ?></h2><?php
 
 				$count = 0;
 				if ( $neue_q->have_posts() ) : ?>

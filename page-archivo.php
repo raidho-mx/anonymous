@@ -33,6 +33,15 @@ Archivo de Tags
 
 			foreach ($tags as $tag) {
 
+				// Strip spaces & check if has #
+				$noSpaces = str_replace(' ', '', $tag->name);
+				$hashPos = strpos($noSpaces, '#');
+				if ($hashPos === 0) {
+					$tagName = $noSpaces;
+				} else {
+					$tagName = '#'.$noSpaces;
+				}
+
 
 				// get last post's Img
 				$args2 = array('tag' => $tag->slug, 'posts_per_page' => 1);
@@ -63,7 +72,7 @@ Archivo de Tags
 				<div class="six columns articulo"><?php
 					echo '<a href='.$tag_link.' title='.$tag->name.' class='.$tag->slug.'>'; ?>
 						<img src="<?php echo $mainImg; ?>">
-						<h3><?php echo $tag->name; ?></h3>
+						<h3><?php echo $tagName; ?></h3>
 						<p><?php echo $tag->description; ?></p>
 					</a>
 				</div><?php
