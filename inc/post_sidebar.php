@@ -8,24 +8,31 @@ Single Post Sidebar
 <!-- Sidebar Single Post -->
 <div class="sidebar_post three columns offset-by-one"><?php
 
-	$rows = get_field('img_ads', 'option');
 
+
+	$rows = get_field('img_ads', 'option');
 	if($rows) : ?>
 		<h3>Publicidad</h3><?php
 
 		shuffle($rows);
 		$i = 0;
 		foreach($rows as $row) {
-			$image = $row['img'];
-			?><div class="ad_group">
-					<div class="ad_google_uno">
-						<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
-							<img src="<?php echo $image['sizes']['large']; ?>" width="300" alt="<?php echo $row['description']; ?>">
-						</a>
-					</div>
-				</div><?php
+			adSingleImg($row);
 			if (++$i == 1) break;
 		}
+	else : ?>
+		<h3>Publicidad</h3>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Single sidebar -->
+			<ins class="adsbygoogle"
+			style="display:block"
+			data-ad-client="ca-pub-5768279375233007"
+			data-ad-slot="6373282778"
+			data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		<?php
 	endif;
 
 
@@ -68,16 +75,26 @@ Single Post Sidebar
 			$adMore = get_sub_field('description');
 			$adButton = get_sub_field('boton');
 			$adUrl = get_sub_field('url');
+			$rawId = get_sub_field('gtm_id');
 		}
 
 	endwhile;
 
 
-	if($adTitle) { ?>
+	if($adTitle) {
+
+		$unwanted_array = array(
+			'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+			'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+			'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+			'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+			'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', ' '=>'_' );
+		$cleanId = strtr( $rawId, $unwanted_array );
+		$stripedId = strtolower( $cleanId ); ?>
 
 		<h3>Publicidad</h3>
 		<div class="ad_group columns articulo ">
-			<a href="<?php echo $adUrl; ?>">
+			<a href="<?php echo $adUrl; ?>" id="<?php echo $stripedId ?>" data-title="<?php echo $rawId; ?>" class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank">
 				<img width="600" src="<?php echo $adImg['sizes']['large']; ?>">
 				<h4><strong><?php echo $adTitle; ?></strong> <?php echo $adMore; ?></h4>
 				<?php if($adButton) echo '<div><button>'.$adButton.'</button></div>'; ?>
@@ -94,14 +111,7 @@ Single Post Sidebar
 			shuffle($rows);
 			$i = 0;
 			foreach($rows as $row) {
-				$image = $row['img'];
-				?><div class="ad_group">
-						<div class="ad_google_uno">
-							<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
-								<img src="<?php echo $image['sizes']['large']; ?>" width="300" alt="<?php echo $row['description']; ?>">
-							</a>
-						</div>
-					</div><?php
+				adSingleImg($row);
 				if (++$i == 1) break;
 			}
 		endif;
