@@ -22,10 +22,10 @@ $(document).ready(function(){
 
 
 	// Trigger: Menu
-	console.log('popetoe');
+	// console.log('popetoe');
 	var numberItems = $( "#list li" ).length;
 	var heightItems = $( "#list li" ).outerHeight();
-	var totalSize = numberItems * heightItems
+	var totalSize = numberItems * heightItems;
 
 	$( "#list" ).children().wrapAll('<div class="wrapper"></div>');
 	$( "#burger" ).on("click", function(){
@@ -40,10 +40,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
-
-
-
 
 
 
@@ -89,3 +85,92 @@ function checkWidth() {
 	}
 }
 $(window).resize(checkWidth);
+
+
+
+
+
+
+
+/*
+ * Sends Views to GA
+ */
+
+
+// functions:
+// 1- $function is item on screen
+	$.fn.isOnScreen = function() {
+		var win = $(window);
+
+		var viewport = {
+		top: win.scrollTop(),
+		left: win.scrollLeft()
+		};
+
+		viewport.right = viewport.left + win.width();
+		viewport.bottom = viewport.top + win.height();
+
+		var bounds = this.offset();
+		bounds.right = bounds.left + this.outerWidth();
+		bounds.bottom = bounds.top + this.outerHeight();
+
+		return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+	};
+
+
+// 2- THIS es el elemento en pantalla
+	function isTargetVisible() {
+		returnVal = [];
+		$('.register_ga').each(function() {
+			if ($(this).isOnScreen()) {
+				returnVal.push( $(this).attr('title') );
+			}
+		});
+		return returnVal;
+	}
+
+
+
+
+// object: adPool junta todos los ADs en esta pagina
+	var adPool = {};
+	$('.register_ga').each(function() {
+		var key = $(this).attr('title');
+		if( $(this).hasClass('complex') ) {
+			var type = 'complex';
+		} else {
+			var type = 'image';
+		}
+		adPool[key] = {
+			'title': $(this).attr('data-title'),
+			'id': $(this).attr('id'),
+			'seen': false,
+			'adtype': type
+		};
+	});
+
+
+
+
+
+// action: cuando dejamos de scrollear, registramos los ADs que estan visibles en la pantalla solo una vez
+	var timeout;
+	$(window).scroll(function() {
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+			if ($('.register_ga').length > 0) {
+				if (isTargetVisible().length > 0) {
+					var a = isTargetVisible();
+					for (i = 0; i < a.length; i++) {
+						var currName = a[i];
+						var currSeen = adPool[currName].seen;
+						if(currSeen == false) {
+							adPool[currName].seen = true;
+							console.log(adPool[currName].adtype + ': ' + adPool[currName].title);
+							ga('send', 'event', adPool[currName].adtype + ': ' + adPool[currName].title, 'impression', location.pathname);
+						}
+					}
+				}
+			}
+		}, 25);
+	});
