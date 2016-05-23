@@ -178,16 +178,32 @@ if( have_rows('home_modules') ):
 
 			} elseif($choose == 'large') {
 
-				$imgAd = get_sub_field('img'); ?>
+				$imgAd = get_sub_field('img');
+				$rawId = get_sub_field('gtm_id');
+				$cleanId = strtr( $rawId, $unwanted_array );
+				$stripedId = strtolower( $cleanId ); ?>
 
 				<div class="row home_ads_dos ad_group container spacer">
-					<a href="<?php the_sub_field('url'); ?>" class="ten columns offset-by-one" target="_blank">
+					<a href="<?php the_sub_field('url'); ?>" id="<?php echo $stripedId; ?>" data-title="<?php echo $rawId; ?>" class="register_ga ten columns offset-by-one" onClick="ga('send', 'event', 'imagen: <?php echo $rawId; ?>', 'click', location.pathname);" title="<?php the_sub_field('description'); ?>" target="_blank">
 						<div class="ad_google_uno">
 							<img src="<?php echo $imgAd['sizes']['large']; ?>" alt="<?php the_sub_field('about'); ?>">
 						</div>
 					</a>
 				</div><?php
 
+			} elseif($choose == 'large_google') { ?>
+
+				<div class="row home_ads_dos ad_group container spacer">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Home Large -->
+					<ins class="adsbygoogle"
+						 style="display:inline-block;width:970px;height:250px"
+						 data-ad-client="ca-pub-5768279375233007"
+						 data-ad-slot="6931039173"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div><?php
 
 			} else {}
 
