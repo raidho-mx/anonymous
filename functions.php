@@ -16,6 +16,21 @@
 	add_image_size( 'usual', 630, 340, true );	// thumb : 300   med : 600   large : 1280×1080
 
 
+	// Hide "customize" button
+
+		function remove_customize_page(){
+			global $submenu;
+			unset($submenu['themes.php'][6]); // remove customize link
+		}
+		add_action( 'admin_menu', 'remove_customize_page');
+
+		function wpse200296_before_admin_bar_render(){
+			global $wp_admin_bar;
+			$wp_admin_bar->remove_menu('customize');
+		}
+		add_action( 'wp_before_admin_bar_render', 'wpse200296_before_admin_bar_render' );
+
+
 	/*  ACF - Options  */
 
 		if( function_exists('acf_add_options_page') ) {
@@ -125,7 +140,14 @@
 
 
 
-		function patrocinadores($title = FALSE) {
+		$unwanted_array = array('Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', ' '=>'_' );
+
+
+
+
+		function patrocinadores($title = false) {
+
+			global $unwanted_array;
 			$rows = get_field('img_ads', 'option');
 			if($rows) : ?>
 
@@ -137,8 +159,11 @@
 				$i = 0;
 				foreach($rows as $row) {
 					$image = $row['img'];
+					$rawId = $row['gtm_id'];
+					$cleanId = strtr( $rawId, $unwanted_array );
+					$stripedId = strtolower( $cleanId );
 					?><li>
-						<a href="<?php echo $row['url']; ?>" title="<?php echo $row['description']; ?>" target="_blank">
+						<a href="<?php echo $row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga" onClick="ga('send', 'event', 'imagen: <?php echo $rawId; ?>', 'click', location.pathname);" title="<?php echo $row['description']; ?>" target="_blank">
 							<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $row['description']; ?>" width="300" />
 						</a>
 					</li><?php
@@ -148,6 +173,29 @@
 			</ul>
 		</div><?php
 			endif;
+		}
+
+
+
+
+
+
+		function adSingleImg($row = false) {
+
+			global $unwanted_array;
+			$image = $row['img'];
+			$rawId = $row['gtm_id'];
+			$cleanId = strtr( $rawId, $unwanted_array );
+			$stripedId = strtolower( $cleanId );
+
+			?><div class="ad_group">
+					<div class="ad_google_uno">
+						<a href="<?php echo $row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga" title="<?php echo $row['description']; ?>" onClick="ga('send', 'event', 'imagen: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank">
+							<img src="<?php echo $image['sizes']['large']; ?>" width="300" alt="<?php echo $row['description']; ?>">
+						</a>
+					</div>
+				</div><?php
+
 		}
 
 
@@ -274,13 +322,9 @@
 			$hilo .= '<div class="quote_meta">';
 
 				if($a['thumb']) $hilo .= '<div class="quote_pic" style="background-image: url('. $a['thumb'] .')"></div>';
-
 				if($a['author'] OR $a['about']) $hilo .= '<p>';
-
 					if($a['author']) $hilo .= '<span class="rojo_txt">'. $a['author'] .'</span>';
-
 					if($a['about']) $hilo .= $a['about'];
-
 				if($a['author'] OR $a['about']) $hilo .= '</p>';
 
 			$hilo .= '</div></div>';
