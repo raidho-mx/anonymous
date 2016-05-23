@@ -146,6 +146,17 @@ Single Post
 			</div>
 			<!-- Termina row para contener post + sidebar -->
 
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Single above related -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-5768279375233007"
+				 data-ad-slot="4535975974"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+
 			<!-- Artículos Relacionados -->
 			<?php echo do_shortcode('[jprel]');  ?>
 
