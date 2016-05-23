@@ -16,7 +16,7 @@ body.search {
 	background-color: #fb0d1b;
 	color: white;
 }
-.galeria_thumbnails img { opacity: 0; }
+/*.galeria_thumbnails img { opacity: 0; }*/
 
 .single_post .cuerpo_post .categoria_tag a:after {content: ', ';}
 .single_post .cuerpo_post .categoria_tag a:nth-last-child(1):after {content: '';}
@@ -40,6 +40,14 @@ ul.follow_links li a {
 
 .single .fit-vid {
 	margin-bottom: 3rem;
+}
+
+.single ins.adsbygoogle {
+	margin-bottom: 4em;
+}
+
+.ad_group {
+	text-align: center;
 }
 
 .archive.category .cat_cover {
