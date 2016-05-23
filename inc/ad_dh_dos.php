@@ -7,25 +7,38 @@ Ad DH 2
 
 <!-- Ad horizontal --><?php
 
+	$unwanted_array = array(
+	'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+	'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+	'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+	'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+	'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', ' '=>'_' );
+
 	$rows = get_field('txt_ads', 'option');
 	if($rows) $rand_row = $rows[ array_rand( $rows ) ];
 	$img = $rand_row['img'];
+
+	$rawId = $rand_row['gtm_id'];
+	$cleanId = strtr( $rawId, $unwanted_array );
+	$stripedId = strtolower( $cleanId );
 
 	if($rows) : ?>
 
 <div class="row ad_group">
 
-	<div class="ad_dh_dos twelve columns">
+	<div<?php if($stripedId) echo ' id="'.$stripedId.'"'; ?> class="ad_dh_dos twelve columns">
 
 		<div class="ad_thumb" style="background-image: url('<?php echo $img['url']; ?>')">
 		</div>
 
 		<div>
-			<a href="<?php echo $rand_row['url']; ?>" target="_blank"><p><?php if($rand_row['title'])echo '<strong>'.$rand_row['title'].'</strong>'; ?> <?php echo $rand_row['description']; ?></p></a>
+			<a href="<?php echo $rand_row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank"><?php
+				if($rand_row['title']) echo '<strong>'.$rand_row['title'].'</strong>'; ?> <?php echo $rand_row['description']; ?>
+			</a>
 			<?php if( get_field('ads_link', 'option') ) echo '<div class="small_notice"><span>'.get_field('ads_link', 'option').'</span></div>'; ?>
 		</div><?php
 
-		if($rand_row['boton']) echo '<div><button>'.$rand_row['boton'].'</button></div>'; ?>
+		if($rand_row['boton']) echo '<div><button class="ad_complex_button">'.$rand_row['boton'].'</button></div>'; ?>
 
 	</div>
 
