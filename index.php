@@ -18,7 +18,7 @@ Template Name: Reciente
 				$noSearch = TRUE;
 			}
 		} elseif(is_tag()) { ?>
-			<h2><?php single_tag_title('Etiqueta: '); ?></h2><?php
+			<h2><?php single_tag_title('Etiqueta: #'); ?></h2><?php
 		} elseif(is_archive()) { ?>
 			<h2>Archivo</h2><?php
 		} else {

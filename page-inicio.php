@@ -99,12 +99,13 @@ if( have_rows('home_modules') ):
 						$noSpaces = str_replace(' ', '', $selTermID->name);
 						$hashPos = strpos($noSpaces, '#');
 						if ($hashPos === 0) {
-							echo $noSpaces;
+							echo '<a href="'.get_term_link($selTermID).'" title="Ver todo en: '.$selTermID->name.'">'.$noSpaces.'</a>';
 						} else {
-							echo '#'.$noSpaces;
+							echo '<a href="'.get_term_link($selTermID).'" title="Ver todo en: '.$selTermID->name.'">#'.$noSpaces.'</a>';
 						}
 					} else {
-						echo $selTermID->name;
+						// echo $selTermID->name;
+						echo '<a href="'.get_term_link($selTermID).'" title="Ver todo en: '.$selTermID->name.'">'.$selTermID->name.'</a>';
 					} ?></h2><?php
 
 				$count = 0;
