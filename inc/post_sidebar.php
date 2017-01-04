@@ -20,19 +20,6 @@ Single Post Sidebar
 			adSingleImg($row);
 			if (++$i == 1) break;
 		}
-	else : ?>
-		<h3>Publicidad</h3>
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- Single sidebar -->
-			<ins class="adsbygoogle"
-			style="display:block"
-			data-ad-client="ca-pub-5768279375233007"
-			data-ad-slot="6373282778"
-			data-ad-format="auto"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-		<?php
 	endif;
 
 
