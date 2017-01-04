@@ -46,9 +46,24 @@ ul.follow_links li a {
 	margin-bottom: 4em;
 }
 
+
+
+
 .ad_group {
 	text-align: center;
 }
+@media (min-width: 550px) {
+	.ad_dh_dos > div:nth-child(3) .button {
+		width: 100%;
+	}
+}
+.ad_dh_dos p, .ad_dh_dos .button {
+	margin-bottom: 0;
+}
+
+
+
+
 
 .archive.category .cat_cover {
 	background-size: cover;

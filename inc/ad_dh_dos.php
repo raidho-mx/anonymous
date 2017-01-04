@@ -38,7 +38,13 @@ Ad DH 2
 			<?php if( get_field('ads_link', 'option') ) echo '<div class="small_notice"><span>'.get_field('ads_link', 'option').'</span></div>'; ?>
 		</div><?php
 
-		if($rand_row['boton']) echo '<div><button class="ad_complex_button">'.$rand_row['boton'].'</button></div>'; ?>
+		if($rand_row['boton']) { ?>
+			<div>
+				<a href="<?php echo $rand_row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank">
+					<button class="ad_complex_button"><?php echo $rand_row['boton']; ?></button>
+				</a>
+			</div><?php
+		} ?>
 
 	</div>
 
