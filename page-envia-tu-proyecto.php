@@ -26,7 +26,7 @@ Envía tu Proyecto
 					<?php
 
 					acf_form(array(
-						'field_groups' => array(20106),
+						'field_groups' => array(20579),
 						'post_id'		=> 'new_post',
 						'post_title'	=> true,
 						'post_content'	=> true,
