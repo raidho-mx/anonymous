@@ -31,10 +31,10 @@ if ( comments_open() ) : ?>
 					'fields' => apply_filters( 'comment_form_default_fields', array(
 						'author' =>	'<input id="author" name="author" type="text" value="' .
 									esc_attr( $commenter['comment_author'] ) . '" placeholder="' .
-									__( 'Tu Nombre' ) . ' ' . ( $req ? ' *' : '' ) . '" size="30"' . $aria_req . ' />',
+									__( 'Tu Nombre' ) . ' ' . ( $req ? ' *' : '' ) . '" size="30" />',
 						'email' =>	'<input id="email" name="email" type="email" value="' .
 									esc_attr( $commenter['comment_author'] ) . '" placeholder="' .
-									__( 'Tu Correo' ) . ' ' . ( $req ? ' *' : '' ) . '" size="30"' . $aria_req . ' />',
+									__( 'Tu Correo' ) . ' ' . ( $req ? ' *' : '' ) . '" size="30" />',
 						'url'    => '' ) ),
 						'label_submit' => 'Comentar',
 						'title_reply' => '',
