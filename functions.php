@@ -340,7 +340,7 @@
 
 		// Check if is active
 
-		function checkActive($ads) {
+		function checkActiveSquares($ads) {
 			$arr = array();
 			if($ads) {
 				foreach($ads as $row) {
@@ -352,4 +352,34 @@
 				}
 			}
 			return $arr;
+		}
+
+		function checkActiveStripes($ads) {
+			$arr = array();
+			if($ads) {
+				foreach($ads as $row) {
+					if($row['active'] == 1) {	// Is active.
+						if($row['stripe'][0]['img'] != '') { 	// Has image.
+							array_push($arr, $row);
+						}
+					}
+				}
+			}
+			return $arr;
+		}
+
+
+		// Search in a multidimensional array
+
+		function search($array, $key, $value) {
+			$results = array();
+			if (is_array($array)) {
+				if (isset($array[$key]) && $array[$key] == $value) {
+					$results[] = $array;
+				}
+				foreach ($array as $subarray) {
+					$results = array_merge($results, search($subarray, $key, $value));
+				}
+			}
+			return $results;
 		}

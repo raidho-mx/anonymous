@@ -23,10 +23,10 @@
 	$dh_ads = get_field('dh_ads', 'option');
 	$cat_ads = get_field('cat_ads', 'option');
 
-	$checkBasic = checkActive($basic_ads);
-	$checkHome = checkActive($home_ads);
-	$checkDH = checkActive($dh_ads);
-	$checkCat = checkActive($cat_ads);
+	$checkBasic = checkActiveSquares($basic_ads);
+	$checkHome = checkActiveSquares($home_ads);
+	$checkDH = checkActiveSquares($dh_ads);
+	$checkCat = checkActiveSquares($cat_ads);
 
 	$allChecked = array_merge($checkBasic, $checkHome, $checkDH, $checkCat);
 	$lucky = array_rand($allChecked, 1);
