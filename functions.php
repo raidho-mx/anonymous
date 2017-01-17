@@ -334,3 +334,22 @@
 
 		}
 		add_shortcode( 'dh_quote', 'dh_quote_engine' );
+
+
+
+
+		// Check if is active
+
+		function checkActive($ads) {
+			$arr = array();
+			if($ads) {
+				foreach($ads as $row) {
+					if($row['active'] == 1) {	// Is active.
+						if($row['squares'][0]['img'] != '') { 	// Has image.
+							array_push($arr, $row);
+						}
+					}
+				}
+			}
+			return $arr;
+		}
