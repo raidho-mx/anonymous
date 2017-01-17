@@ -1,11 +1,29 @@
 <?php
-/*
-Designaholic Templates
-Ad DH 2
-*/
-?>
 
-<!-- Ad horizontal --><?php
+/*
+ *	Designaholic Templates
+ *	Ad DH 2
+ */
+
+	$dh_ads = get_field('dh_ads', 'option');
+	$cat_ads = get_field('cat_ads', 'option');
+
+	$checkDH = checkActive($dh_ads);
+	$checkCat = checkActive($cat_ads);
+
+	$allChecked = array_merge($checkDH, $checkCat);
+	$lucky = array_rand($allChecked, 1);
+	$luckyAd = $allChecked[$lucky];
+
+	$adStripe = $luckyAd['stripe'][0];
+
+	if(!empty($adStripe['url'])) {
+		$adUrl = $adStripe['url'];
+	} elseif(!empty($luckyAd['url'])) {
+		$adUrl = $luckyAd['url'];
+	} else {
+		$adUrl = '#';
+	}
 
 	$unwanted_array = array(
 	'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
@@ -14,34 +32,34 @@ Ad DH 2
 	'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
 	'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', ' '=>'_' );
 
-	$rows = get_field('txt_ads', 'option');
-	if($rows) $rand_row = $rows[ array_rand( $rows ) ];
-	$img = $rand_row['img'];
+	// $rows = get_field('txt_ads', 'option');
+	// if($rows) $rand_row = $rows[ array_rand( $rows ) ];
 
-	$rawId = $rand_row['gtm_id'];
+	// $img = $rand_row['img'];
+	$rawId = $luckyAd['gtm_id'];
 	$cleanId = strtr( $rawId, $unwanted_array );
 	$stripedId = strtolower( $cleanId );
 
-	if($rows) : ?>
+	if(!empty($adStripe['title'])) : ?>
 
 <div class="row ad_group">
 
 	<div<?php if($stripedId) echo ' id="'.$stripedId.'"'; ?> class="ad_dh_dos twelve columns">
 
-		<div class="ad_thumb" style="background-image: url('<?php echo $img['url']; ?>')">
+		<div class="ad_thumb" style="background-image: url('<?php echo $adStripe['img']; ?>')">
 		</div>
 
 		<div>
-			<a href="<?php echo $rand_row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank"><?php
-				if($rand_row['title']) echo '<strong>'.$rand_row['title'].'</strong>'; ?> <?php echo $rand_row['description']; ?>
+			<a href="<?php echo $adUrl; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$adStripe['title'].'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank"><?php
+				if(!empty($adStripe['title'])) echo '<strong>'.$adStripe['title'].'</strong>'; ?> <?php echo $adStripe['description']; ?>
 			</a>
 			<?php if( get_field('ads_link', 'option') ) echo '<div class="small_notice"><span>'.get_field('ads_link', 'option').'</span></div>'; ?>
 		</div><?php
 
-		if($rand_row['boton']) { ?>
+		if($adStripe['boton']) { ?>
 			<div>
-				<a href="<?php echo $rand_row['url']; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$rawId.'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank">
-					<button class="ad_complex_button"><?php echo $rand_row['boton']; ?></button>
+				<a href="<?php echo $adUrl; ?>"<?php if($stripedId) echo ' id="'.$stripedId.'" data-title="'.$adStripe['title'].'"'; ?> class="register_ga complex" onClick="ga('send', 'event', 'complex: <?php echo $rawId; ?>', 'click', location.pathname);" target="_blank">
+					<button class="ad_complex_button"><?php echo $adStripe['boton']; ?></button>
 				</a>
 			</div><?php
 		} ?>
