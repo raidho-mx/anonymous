@@ -5,15 +5,25 @@
  *	Ad DH 2
  */
 
+	// Get Active ads & make a list
 	$dh_ads = get_field('dh_ads', 'option');
 	$cat_ads = get_field('cat_ads', 'option');
-
-	$checkDH = checkActive($dh_ads);
-	$checkCat = checkActive($cat_ads);
-
+	$checkDH = checkActiveStripes($dh_ads);
+	$checkCat = checkActiveStripes($cat_ads);
 	$allChecked = array_merge($checkDH, $checkCat);
-	$lucky = array_rand($allChecked, 1);
-	$luckyAd = $allChecked[$lucky];
+
+	if(is_category()) {
+		$category = get_queried_object();
+		$catID = $category->term_id;
+		$hostedCat = search($allChecked, 'tax_rel', $catID);
+		if(!empty($hostedCat)) {
+			$lucky = array_rand($hostedCat, 1);
+			$luckyAd = $hostedCat[$lucky];
+		}
+	} else {
+		$lucky = array_rand($allChecked, 1);
+		$luckyAd = $allChecked[$lucky];
+	}
 
 	$adStripe = $luckyAd['stripe'][0];
 
