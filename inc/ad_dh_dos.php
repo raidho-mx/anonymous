@@ -12,6 +12,7 @@
 	$checkCat = checkActiveStripes($cat_ads);
 	$allChecked = array_merge($checkDH, $checkCat);
 
+	// If on category, check if Sponsored
 	if(is_category()) {
 		$category = get_queried_object();
 		$catID = $category->term_id;
@@ -19,6 +20,9 @@
 		if(!empty($hostedCat)) {
 			$lucky = array_rand($hostedCat, 1);
 			$luckyAd = $hostedCat[$lucky];
+		} else {
+			$lucky = array_rand($allChecked, 1);
+			$luckyAd = $allChecked[$lucky];
 		}
 	} else {
 		$lucky = array_rand($allChecked, 1);
